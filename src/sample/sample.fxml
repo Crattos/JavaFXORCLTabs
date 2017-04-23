@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.Controller">
+   <children>
+      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Users">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="userTable" layoutX="56.0" layoutY="14.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="userID" prefWidth="75.0" text="ID_USER" />
+                            <TableColumn fx:id="userNick" prefWidth="75.0" text="NICK" />
+                              <TableColumn fx:id="userEmail" prefWidth="75.0" text="EMAIL" />
+                              <TableColumn fx:id="userIsAdmin" prefWidth="75.0" text="ADMIN" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Sections">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="sectionTable" layoutX="65.0" layoutY="14.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="sectionId" prefWidth="75.0" text="ID_SECTION" />
+                            <TableColumn fx:id="sectionUserId" prefWidth="75.0" text="ID_USER" />
+                              <TableColumn fx:id="sectionTitle" prefWidth="75.0" text="TITLE" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Threads">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="threadTable" layoutX="57.0" layoutY="14.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="threadID" prefWidth="75.0" text="ID_THREAD" />
+                            <TableColumn fx:id="threadSectionId" prefWidth="75.0" text="ID_SECTION" />
+                              <TableColumn fx:id="threadUserId" prefWidth="75.0" text="ID_USER" />
+                              <TableColumn fx:id="threadTitle" prefWidth="75.0" text="TITLE" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Posts">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="postTable" layoutX="100.0" layoutY="40.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="postID" prefWidth="75.0" text="ID_POST" />
+                            <TableColumn fx:id="postThreadId" prefWidth="75.0" text="ID_THREAD" />
+                              <TableColumn fx:id="postUserID" prefWidth="75.0" text="ID_USER" />
+                              <TableColumn fx:id="postContent" prefWidth="75.0" text="CONTENT" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
