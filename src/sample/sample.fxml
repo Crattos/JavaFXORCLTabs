@@ -14,7 +14,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="userTable" editable="true" layoutX="56.0" layoutY="14.0" onKeyPressed="#deleteUserRow" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="userTable" editable="true" layoutX="56.0" layoutY="14.0" onKeyPressed="#modifyUserRow" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="userID" prefWidth="75.0" text="ID_USER" />
                             <TableColumn fx:id="userNick" onEditCommit="#editUserNick" prefWidth="75.0" text="NICK" />
@@ -29,7 +29,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="sectionTable" editable="true" layoutX="65.0" layoutY="14.0" onKeyPressed="#deleteSectionRow" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="sectionTable" editable="true" layoutX="65.0" layoutY="14.0" onKeyPressed="#modifySectionRow" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="sectionId" prefWidth="75.0" text="ID_SECTION" />
                             <TableColumn fx:id="sectionUserId" onEditCommit="#editSectionUserID" prefWidth="75.0" text="ID_USER" />
@@ -43,7 +43,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="threadTable" editable="true" layoutX="57.0" layoutY="14.0" onKeyPressed="#deleteThreadRow" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="threadTable" editable="true" layoutX="57.0" layoutY="14.0" onKeyPressed="#modifyThreadRow" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="threadID" prefWidth="75.0" text="ID_THREAD" />
                             <TableColumn fx:id="threadSectionId" onEditCommit="#editThreadSectionId" prefWidth="75.0" text="ID_SECTION" />
@@ -59,7 +59,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="postTable" editable="true" layoutX="100.0" layoutY="40.0" onKeyPressed="#deletePostRow" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="postTable" editable="true" layoutX="100.0" layoutY="40.0" onKeyPressed="#modifyPostRow" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="postID" prefWidth="75.0" text="ID_POST" />
                             <TableColumn fx:id="postThreadId" onEditCommit="#editPostThreadID" prefWidth="75.0" text="ID_THREAD" />

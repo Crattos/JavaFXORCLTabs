@@ -151,6 +151,56 @@ public class Connector {
         return threadData;
     }
 
+    /**
+     *
+     *
+     * INSERT NEW VALUES
+     *
+     */
+
+    public void insertNewUser() throws SQLException {
+        int value = 0;
+        int id = getMaxId("UZYTKOWNICY","ID_UZYTKOWNIKA");
+        String unknown = "'unknown'";
+        getDBConnection();
+        String selectQuery = "INSERT INTO Uzytkownicy VALUES("+id+", "+unknown+", "+unknown+","+ value+")";
+        prepareStatement(selectQuery);
+    }
+
+    public void insertNewSection() throws SQLException {
+        int value = 1;
+        int id = getMaxId("DZIALY","ID_DZIALU");
+        String unknown = "'unknown'";
+        getDBConnection();
+        String selectQuery = "INSERT INTO Dzialy VALUES("+id+", "+value+", "+ unknown+")";
+        prepareStatement(selectQuery);
+    }
+
+    public void insertNewThread() throws SQLException {
+        int value = 1;
+        int id = getMaxId("WATEK","ID_WATKU");
+        String unknown = "'unknown'";
+        getDBConnection();
+        String selectQuery = "INSERT INTO Watek VALUES("+id+", "+value+", "+value+", "+ unknown+")";
+        prepareStatement(selectQuery);
+    }
+
+    public void insertNewPost() throws SQLException {
+        int value = 1;
+        int id = getMaxId("KOMENTARZE","ID_KOMENTARZA");
+        String unknown = "'unknown'";
+        getDBConnection();
+        String selectQuery = "INSERT INTO Komentarze VALUES("+id+", "+value+", "+value+", "+ unknown+")";
+        prepareStatement(selectQuery);
+    }
+
+    /**
+     *
+     *
+     * UPDATE AND DELETE ROWS
+     *
+     */
+
     public void updateCell(String nameOfTable, String nameOfColumn, String nameOfIDColumn, String newValue, int id) throws SQLException {
         getDBConnection();
 
@@ -165,9 +215,29 @@ public class Connector {
         prepareStatement(selectQuery);
     }
 
+
+    /**
+     *
+     *
+     * SETMAXID AND PREPRARESTATEMENT
+     *
+     *
+     */
+
+
+    private int getMaxId(String nameOfTable, String nameOfIdColumn) throws SQLException {
+        getDBConnection();
+
+        String selectQuery = "Select max("+nameOfIdColumn+") From "+nameOfTable;
+        PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        int max = resultSet.getInt(1);
+        return max+1;
+    }
+
     private void prepareStatement(String selectQuery) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
         preparedStatement.executeUpdate();
     }
-
 }

@@ -227,40 +227,48 @@ public class Controller implements Initializable {
      *
      */
 
-    public void deleteThreadRow(KeyEvent keyEvent) throws SQLException {
+    public void modifyThreadRow(KeyEvent keyEvent) throws SQLException {
         if ( keyEvent.getCode().equals( KeyCode.DELETE ) ){
             Thread thread =  threadTable.getSelectionModel().getTableView().getSelectionModel().getSelectedItem();
             connector.deleteRow("WATEK","ID_WATKU",  thread.getId());
             refresh();
+        }else if(keyEvent.getCode().equals( KeyCode.INSERT ) ){
+            connector.insertNewThread();
+            refresh();
         }
 
     }
 
-    public void deleteSectionRow(KeyEvent keyEvent) throws SQLException {
+    public void modifySectionRow(KeyEvent keyEvent) throws SQLException {
         if ( keyEvent.getCode().equals( KeyCode.DELETE ) ){
             Section section =  sectionTable.getSelectionModel().getTableView().getSelectionModel().getSelectedItem();
             connector.deleteRow("DZIALY","ID_DZIALU",  section.getId());
             refresh();
-
+        }else if(keyEvent.getCode().equals( KeyCode.INSERT ) ){
+            connector.insertNewSection();
+            refresh();
         }
     }
 
-    public void deleteUserRow(KeyEvent keyEvent) throws SQLException {
+    public void modifyUserRow(KeyEvent keyEvent) throws SQLException {
         if ( keyEvent.getCode().equals( KeyCode.DELETE ) ){
             User user =  userTable.getSelectionModel().getTableView().getSelectionModel().getSelectedItem();
             connector.deleteRow("UZYTKOWNICY","ID_UZYTKOWNIKA",  user.getId());
             refresh();
-
-
+        }else if(keyEvent.getCode().equals( KeyCode.INSERT ) ){
+            connector.insertNewUser();
+            refresh();
         }
     }
 
-    public void deletePostRow(KeyEvent keyEvent) throws SQLException {
+    public void modifyPostRow(KeyEvent keyEvent) throws SQLException {
         if ( keyEvent.getCode().equals( KeyCode.DELETE ) ){
             Post post =  postTable.getSelectionModel().getTableView().getSelectionModel().getSelectedItem();
             connector.deleteRow("KOMENTARZE","ID_KOMENTARZA",  post.getId());
             refresh();
-
+        }else if(keyEvent.getCode().equals( KeyCode.INSERT ) ){
+            connector.insertNewPost();
+            refresh();
         }
     }
 }
