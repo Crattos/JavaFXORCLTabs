@@ -6,6 +6,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.util.converter.NumberStringConverter;
 import sample.Connector;
 import sample.tables.Post;
@@ -66,7 +68,7 @@ public class Controller implements Initializable {
     public TableColumn<Post, String> postContent;
 
 
-    private void connectTableColumnsToUser() {
+    private void connectTableColumns() {
         userID.setCellValueFactory(cellData -> cellData.getValue().idProperty());
         userNick.setCellValueFactory(cellData -> cellData.getValue().nickProperty());
         userEmail.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
@@ -98,9 +100,17 @@ public class Controller implements Initializable {
     }
 
 
+    public void refresh() throws SQLException {
+        userTable.setItems(connector.findAllUsers());
+        sectionTable.setItems(connector.findAllSections());
+        threadTable.setItems(connector.findAllThreads());
+        postTable.setItems(connector.findAllPosts());
+    }
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        connectTableColumnsToUser();
+        connectTableColumns();
         setEditableCells();
     }
 
@@ -209,5 +219,49 @@ public class Controller implements Initializable {
         connector.updateCell("KOMENTARZE","TRESC","ID_KOMENTARZA", cell.getNewValue(),id);
     }
 
+    /**
+     *
+     *
+     * Deleting
+     *
+     *
+     */
+
+    public void deleteThreadRow(KeyEvent keyEvent) throws SQLException {
+        if ( keyEvent.getCode().equals( KeyCode.DELETE ) ){
+            Thread thread =  threadTable.getSelectionModel().getTableView().getSelectionModel().getSelectedItem();
+            connector.deleteRow("WATEK","ID_WATKU",  thread.getId());
+            refresh();
+        }
+
+    }
+
+    public void deleteSectionRow(KeyEvent keyEvent) throws SQLException {
+        if ( keyEvent.getCode().equals( KeyCode.DELETE ) ){
+            Section section =  sectionTable.getSelectionModel().getTableView().getSelectionModel().getSelectedItem();
+            connector.deleteRow("DZIALY","ID_DZIALU",  section.getId());
+            refresh();
+
+        }
+    }
+
+    public void deleteUserRow(KeyEvent keyEvent) throws SQLException {
+        if ( keyEvent.getCode().equals( KeyCode.DELETE ) ){
+            User user =  userTable.getSelectionModel().getTableView().getSelectionModel().getSelectedItem();
+            connector.deleteRow("UZYTKOWNICY","ID_UZYTKOWNIKA",  user.getId());
+            refresh();
+
+
+        }
+    }
+
+    public void deletePostRow(KeyEvent keyEvent) throws SQLException {
+        if ( keyEvent.getCode().equals( KeyCode.DELETE ) ){
+            Post post =  postTable.getSelectionModel().getTableView().getSelectionModel().getSelectedItem();
+            connector.deleteRow("KOMENTARZE","ID_KOMENTARZA",  post.getId());
+            refresh();
+
+        }
+    }
 }
 

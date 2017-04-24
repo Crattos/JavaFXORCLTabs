@@ -156,6 +156,16 @@ public class Connector {
 
         String selectQuery = "UPDATE "+nameOfTable+" SET "+nameOfColumn+" = '"+ newValue +"' WHERE "+nameOfIDColumn+" = "+id;
 
+        prepareStatement(selectQuery);
+    }
+
+    public void deleteRow(String nameOfTable,  String nameOfIDColumn,  int id) throws SQLException {
+        getDBConnection();
+        String selectQuery = "DELETE FROM "+nameOfTable+" WHERE "+nameOfIDColumn+" = "+id;
+        prepareStatement(selectQuery);
+    }
+
+    private void prepareStatement(String selectQuery) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
         preparedStatement.executeUpdate();
     }
