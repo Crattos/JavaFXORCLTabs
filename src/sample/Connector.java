@@ -151,4 +151,13 @@ public class Connector {
         return threadData;
     }
 
+    public void updateCell(String nameOfTable, String nameOfColumn, String nameOfIDColumn, String newValue, int id) throws SQLException {
+        getDBConnection();
+
+        String selectQuery = "UPDATE "+nameOfTable+" SET "+nameOfColumn+" = '"+ newValue +"' WHERE "+nameOfIDColumn+" = "+id;
+
+        PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
+        preparedStatement.executeUpdate();
+    }
+
 }

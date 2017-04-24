@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.Controller">
    <children>
       <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -18,8 +18,8 @@
                           <columns>
                             <TableColumn fx:id="userID" prefWidth="75.0" text="ID_USER" />
                             <TableColumn fx:id="userNick" onEditCommit="#editUserNick" prefWidth="75.0" text="NICK" />
-                              <TableColumn fx:id="userEmail" prefWidth="75.0" text="EMAIL" />
-                              <TableColumn fx:id="userIsAdmin" prefWidth="75.0" text="ADMIN" />
+                              <TableColumn fx:id="userEmail" onEditCommit="#editUserEmail" prefWidth="75.0" text="EMAIL" />
+                              <TableColumn fx:id="userIsAdmin" onEditCommit="#editUserIsAdmin" prefWidth="75.0" text="ADMIN" />
                           </columns>
                         </TableView>
                      </children></AnchorPane>
@@ -32,12 +32,9 @@
                         <TableView fx:id="sectionTable" editable="true" layoutX="65.0" layoutY="14.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="sectionId" prefWidth="75.0" text="ID_SECTION" />
-                            <TableColumn fx:id="sectionUserId" prefWidth="75.0" text="ID_USER" />
-                              <TableColumn fx:id="sectionTitle" prefWidth="75.0" text="TITLE" />
+                            <TableColumn fx:id="sectionUserId" onEditCommit="#editSectionUserID" prefWidth="75.0" text="ID_USER" />
+                              <TableColumn fx:id="sectionTitle" onEditCommit="#editSectionTitle" prefWidth="75.0" text="TITLE" />
                           </columns>
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
                         </TableView>
                      </children></AnchorPane>
             </content>
@@ -49,13 +46,10 @@
                         <TableView fx:id="threadTable" editable="true" layoutX="57.0" layoutY="14.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="threadID" prefWidth="75.0" text="ID_THREAD" />
-                            <TableColumn fx:id="threadSectionId" prefWidth="75.0" text="ID_SECTION" />
-                              <TableColumn fx:id="threadUserId" prefWidth="75.0" text="ID_USER" />
-                              <TableColumn fx:id="threadTitle" prefWidth="75.0" text="TITLE" />
+                            <TableColumn fx:id="threadSectionId" onEditCommit="#editThreadSectionId" prefWidth="75.0" text="ID_SECTION" />
+                              <TableColumn fx:id="threadUserId" onEditCommit="#editThreadUserId" prefWidth="75.0" text="ID_USER" />
+                              <TableColumn fx:id="threadTitle" onEditCommit="#editThreadTitle" prefWidth="75.0" text="TITLE" />
                           </columns>
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
                         </TableView>
                      </children>
                   </AnchorPane>
@@ -68,13 +62,10 @@
                         <TableView fx:id="postTable" editable="true" layoutX="100.0" layoutY="40.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="postID" prefWidth="75.0" text="ID_POST" />
-                            <TableColumn fx:id="postThreadId" prefWidth="75.0" text="ID_THREAD" />
-                              <TableColumn fx:id="postUserID" prefWidth="75.0" text="ID_USER" />
-                              <TableColumn fx:id="postContent" prefWidth="75.0" text="CONTENT" />
+                            <TableColumn fx:id="postThreadId" onEditCommit="#editPostThreadID" prefWidth="75.0" text="ID_THREAD" />
+                              <TableColumn fx:id="postUserID" onEditCommit="#editPostUserID" prefWidth="75.0" text="ID_USER" />
+                              <TableColumn fx:id="postContent" onEditCommit="#editPostContent" prefWidth="75.0" text="CONTENT" />
                           </columns>
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
                         </TableView>
                      </children>
                   </AnchorPane>

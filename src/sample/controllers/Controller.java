@@ -3,9 +3,9 @@ package sample.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.converter.DefaultStringConverter;
 import javafx.util.converter.NumberStringConverter;
 import sample.Connector;
 import sample.tables.Post;
@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
 
-
+    private Connector connector;
 
     @FXML
     private TableView<User> userTable;
@@ -94,6 +94,7 @@ public class Controller implements Initializable {
         sectionTable.setItems(connector.findAllSections());
         threadTable.setItems(connector.findAllThreads());
         postTable.setItems(connector.findAllPosts());
+        this.connector = connector;
     }
 
 
@@ -122,8 +123,91 @@ public class Controller implements Initializable {
     }
 
 
-    public void editUserNick(TableColumn.CellEditEvent<User, String> cell) {
-        cell.getTableView().getItems().get(cell.getTablePosition().getRow()).setNick(cell.getNewValue());
-        System.out.println(cell.getTableView().getItems().get(cell.getTablePosition().getRow()).getId());
+    /**
+     *
+     * UZYTKOWNICY
+     *
+     */
+
+    public void editUserNick(CellEditEvent<User, String> cell) throws SQLException {
+        int id = cell.getTableView().getItems().get(cell.getTablePosition().getRow()).getId();
+        connector.updateCell("UZYTKOWNICY","NICK","ID_UZYTKOWNIKA",cell.getNewValue(),id);
     }
+
+    public void editUserEmail(CellEditEvent<User, String> cell) throws SQLException {
+        int id = cell.getTableView().getItems().get(cell.getTablePosition().getRow()).getId();
+        connector.updateCell("UZYTKOWNICY","EMAIL","ID_UZYTKOWNIKA",cell.getNewValue(),id);
+    }
+
+
+    public void editUserIsAdmin(CellEditEvent<User, Number> cell) throws SQLException {
+        int id = cell.getTableView().getItems().get(cell.getTablePosition().getRow()).getId();
+        connector.updateCell("UZYTKOWNICY","ADMIN","ID_UZYTKOWNIKA",cell.getNewValue().toString(),id);
+    }
+
+
+    /**
+     *
+     * DZIALY
+     *
+     */
+
+    public void editSectionUserID(CellEditEvent<Section, Number> cell) throws SQLException {
+        int id = cell.getTableView().getItems().get(cell.getTablePosition().getRow()).getId();
+        connector.updateCell("DZIALY","ID_UZYTKOWNIKA","ID_DZIALU",cell.getNewValue().toString(),id);
+    }
+
+
+    public void editSectionTitle(CellEditEvent<Section, String> cell) throws SQLException {
+        int id = cell.getTableView().getItems().get(cell.getTablePosition().getRow()).getId();
+        connector.updateCell("DZIALY","NAZWA","ID_DZIALU", cell.getNewValue(),id);
+    }
+
+
+    /**
+     *
+     * WĄTKI
+     *
+     */
+
+
+    public void editThreadTitle(CellEditEvent<Thread, String>cell) throws SQLException {
+        int id = cell.getTableView().getItems().get(cell.getTablePosition().getRow()).getId();
+        connector.updateCell("WATEK","TYTUL","ID_WATKU", cell.getNewValue(),id);
+    }
+
+    public void editThreadUserId(CellEditEvent<Thread, Number> cell) throws SQLException {
+        int id = cell.getTableView().getItems().get(cell.getTablePosition().getRow()).getId();
+        connector.updateCell("WATEK","ID_UZYTKOWNIKA","ID_WATKU", cell.getNewValue().toString(),id);
+    }
+
+    public void editThreadSectionId(CellEditEvent<Thread, Number> cell) throws SQLException {
+        int id = cell.getTableView().getItems().get(cell.getTablePosition().getRow()).getId();
+        connector.updateCell("WATEK","ID_DZIALU","ID_WATKU", cell.getNewValue().toString(),id);
+    }
+
+    /**
+     *
+     * KOMENTARZE
+     *
+     */
+
+
+
+    public void editPostThreadID(CellEditEvent<Post, Number>  cell) throws SQLException {
+        int id = cell.getTableView().getItems().get(cell.getTablePosition().getRow()).getId();
+        connector.updateCell("KOMENTARZE","ID_WATKU","ID_KOMENTARZA", cell.getNewValue().toString(),id);
+    }
+
+    public void editPostUserID(CellEditEvent<Post, Number> cell) throws SQLException {
+        int id = cell.getTableView().getItems().get(cell.getTablePosition().getRow()).getId();
+        connector.updateCell("KOMENTARZE","ID_UZYTKOWNIKA","ID_KOMENTARZA", cell.getNewValue().toString(),id);
+    }
+
+    public void editPostContent(CellEditEvent<Post, String> cell) throws SQLException {
+        int id = cell.getTableView().getItems().get(cell.getTablePosition().getRow()).getId();
+        connector.updateCell("KOMENTARZE","TRESC","ID_KOMENTARZA", cell.getNewValue(),id);
+    }
+
 }
+
