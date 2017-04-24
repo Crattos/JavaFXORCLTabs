@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.DefaultStringConverter;
+import javafx.util.converter.NumberStringConverter;
 import sample.Connector;
 import sample.tables.Post;
 import sample.tables.Section;
@@ -83,6 +86,7 @@ public class Controller implements Initializable {
         postThreadId.setCellValueFactory(cellData -> cellData.getValue().threadIdProperty());
         postUserID.setCellValueFactory(cellData -> cellData.getValue().userIdProperty());
         postContent.setCellValueFactory(cellData -> cellData.getValue().contentProperty());
+
     }
 
     public void loadUpTheUsers(Connector connector) throws SQLException {
@@ -96,5 +100,30 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         connectTableColumnsToUser();
+        setEditableCells();
+    }
+
+    private void setEditableCells() {
+        userNick.       setCellFactory(TextFieldTableCell.forTableColumn());
+        userEmail.      setCellFactory(TextFieldTableCell.forTableColumn());
+        userIsAdmin.    setCellFactory(TextFieldTableCell.forTableColumn(new NumberStringConverter()));
+
+        sectionUserId.  setCellFactory(TextFieldTableCell.forTableColumn(new NumberStringConverter()));
+        sectionTitle.   setCellFactory(TextFieldTableCell.forTableColumn());
+
+        threadUserId.   setCellFactory(TextFieldTableCell.forTableColumn(new NumberStringConverter()));
+        threadSectionId.setCellFactory(TextFieldTableCell.forTableColumn(new NumberStringConverter()));
+        threadTitle.    setCellFactory(TextFieldTableCell.forTableColumn());
+
+
+        postThreadId.   setCellFactory(TextFieldTableCell.forTableColumn(new NumberStringConverter()));
+        postUserID.     setCellFactory(TextFieldTableCell.forTableColumn(new NumberStringConverter()));
+        postContent.    setCellFactory(TextFieldTableCell.forTableColumn());
+    }
+
+
+    public void editUserNick(TableColumn.CellEditEvent<User, String> cell) {
+        cell.getTableView().getItems().get(cell.getTablePosition().getRow()).setNick(cell.getNewValue());
+        System.out.println(cell.getTableView().getItems().get(cell.getTablePosition().getRow()).getId());
     }
 }

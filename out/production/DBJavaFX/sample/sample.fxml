@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.Controller">
    <children>
       <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -14,10 +14,10 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="userTable" layoutX="56.0" layoutY="14.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="userTable" editable="true" layoutX="56.0" layoutY="14.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="userID" prefWidth="75.0" text="ID_USER" />
-                            <TableColumn fx:id="userNick" prefWidth="75.0" text="NICK" />
+                            <TableColumn fx:id="userNick" onEditCommit="#editUserNick" prefWidth="75.0" text="NICK" />
                               <TableColumn fx:id="userEmail" prefWidth="75.0" text="EMAIL" />
                               <TableColumn fx:id="userIsAdmin" prefWidth="75.0" text="ADMIN" />
                           </columns>
@@ -29,12 +29,15 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="sectionTable" layoutX="65.0" layoutY="14.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="sectionTable" editable="true" layoutX="65.0" layoutY="14.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="sectionId" prefWidth="75.0" text="ID_SECTION" />
                             <TableColumn fx:id="sectionUserId" prefWidth="75.0" text="ID_USER" />
                               <TableColumn fx:id="sectionTitle" prefWidth="75.0" text="TITLE" />
                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                         </TableView>
                      </children></AnchorPane>
             </content>
@@ -43,13 +46,16 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="threadTable" layoutX="57.0" layoutY="14.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="threadTable" editable="true" layoutX="57.0" layoutY="14.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="threadID" prefWidth="75.0" text="ID_THREAD" />
                             <TableColumn fx:id="threadSectionId" prefWidth="75.0" text="ID_SECTION" />
                               <TableColumn fx:id="threadUserId" prefWidth="75.0" text="ID_USER" />
                               <TableColumn fx:id="threadTitle" prefWidth="75.0" text="TITLE" />
                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                         </TableView>
                      </children>
                   </AnchorPane>
@@ -59,13 +65,16 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="postTable" layoutX="100.0" layoutY="40.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="postTable" editable="true" layoutX="100.0" layoutY="40.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="postID" prefWidth="75.0" text="ID_POST" />
                             <TableColumn fx:id="postThreadId" prefWidth="75.0" text="ID_THREAD" />
                               <TableColumn fx:id="postUserID" prefWidth="75.0" text="ID_USER" />
                               <TableColumn fx:id="postContent" prefWidth="75.0" text="CONTENT" />
                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                         </TableView>
                      </children>
                   </AnchorPane>
