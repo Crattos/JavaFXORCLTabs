@@ -16,7 +16,7 @@ public class Main extends Application {
 
         primaryStage.setTitle("ORACLE DATABASE");
         primaryStage.setScene(new Scene(root, 800, 600));
-        Connector connector = new Connector("wpatryk","wpatryk123");
+        Connector connector = new Connector("postgres","admin");
         Controller controller = loader.getController();
         if (controller == null) {
             System.out.println("null");

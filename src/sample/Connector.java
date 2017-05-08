@@ -8,6 +8,7 @@ import sample.tables.Section;
 import sample.tables.Thread;
 import sample.tables.User;
 
+
 import java.sql.*;
 
 
@@ -23,12 +24,17 @@ public class Connector {
     }
 
 
-    private void getDBConnection()  throws SQLException{
-        OracleDataSource dataSource;
-        dataSource = new OracleDataSource();
-        String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:ORCL";
-        dataSource.setURL(jdbcUrl);
-        connection = dataSource.getConnection(username,password);
+    private void getDBConnection() throws SQLException {
+//        OracleDataSource dataSource;
+//        dataSource = new OracleDataSource();
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        String jdbcUrl = "jdbc:postgresql://localhost:5432/postgres";
+//        dataSource.setURL(jdbcUrl);
+        connection = DriverManager.getConnection(jdbcUrl,username,password);
     }
 
 
@@ -116,7 +122,7 @@ public class Connector {
         userData.setId(resultSet.getInt("ID_UZYTKOWNIKA"));
         userData.setNick(resultSet.getString("NICK"));
         userData.setEmail(resultSet.getString("EMAIL"));
-        userData.setIsAdmin(resultSet.getInt("ADMIN"));
+        userData.setIsAdmin(resultSet.getBoolean("ADMIN"));
         System.out.println(userData.toString());
         return userData;
     }
@@ -163,7 +169,7 @@ public class Connector {
         int id = getMaxId("UZYTKOWNICY","ID_UZYTKOWNIKA");
         String unknown = "'unknown'";
         getDBConnection();
-        String selectQuery = "INSERT INTO Uzytkownicy VALUES("+id+", "+unknown+", "+unknown+","+ value+")";
+        String selectQuery = "INSERT INTO Uzytkownicy VALUES("+id+", "+unknown+", "+unknown+","+ false+")";
         prepareStatement(selectQuery);
     }
 

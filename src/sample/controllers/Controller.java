@@ -8,6 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.util.converter.BooleanStringConverter;
 import javafx.util.converter.NumberStringConverter;
 import sample.Connector;
 import sample.tables.Post;
@@ -33,7 +34,7 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<User, String> userEmail;
     @FXML
-    private TableColumn<User, Number> userIsAdmin;
+    private TableColumn<User, Boolean> userIsAdmin;
 
 
     @FXML
@@ -117,7 +118,7 @@ public class Controller implements Initializable {
     private void setEditableCells() {
         userNick.       setCellFactory(TextFieldTableCell.forTableColumn());
         userEmail.      setCellFactory(TextFieldTableCell.forTableColumn());
-        userIsAdmin.    setCellFactory(TextFieldTableCell.forTableColumn(new NumberStringConverter()));
+        userIsAdmin.    setCellFactory(TextFieldTableCell.forTableColumn(new BooleanStringConverter()));
 
         sectionUserId.  setCellFactory(TextFieldTableCell.forTableColumn(new NumberStringConverter()));
         sectionTitle.   setCellFactory(TextFieldTableCell.forTableColumn());
@@ -150,7 +151,7 @@ public class Controller implements Initializable {
     }
 
 
-    public void editUserIsAdmin(CellEditEvent<User, Number> cell) throws SQLException {
+    public void editUserIsAdmin(CellEditEvent<User, Boolean> cell) throws SQLException {
         int id = cell.getTableView().getItems().get(cell.getTablePosition().getRow()).getId();
         connector.updateCell("UZYTKOWNICY","ADMIN","ID_UZYTKOWNIKA",cell.getNewValue().toString(),id);
     }

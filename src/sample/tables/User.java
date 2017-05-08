@@ -1,8 +1,6 @@
 package sample.tables;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.*;
 
 /**
  * Created by creat on 23.04.2017.
@@ -12,17 +10,17 @@ public class User {
     private IntegerProperty id;
     private SimpleStringProperty nick;
     private SimpleStringProperty email;
-    private IntegerProperty isAdmin ;
+    private BooleanProperty isAdmin ;
 
     public User() {
-        this(0, "unk", "unk", 0);
+        this(0, "unk", "unk", false);
     }
 
-    public User(int id, String nick, String email, int isAdmin) {
+    public User(int id, String nick, String email, boolean isAdmin) {
         this.id = new SimpleIntegerProperty(id);
         this.nick = new SimpleStringProperty(nick);
         this.email = new SimpleStringProperty(email);
-        this.isAdmin = new SimpleIntegerProperty(isAdmin);
+        this.isAdmin = new SimpleBooleanProperty(isAdmin);
     }
 
 
@@ -38,7 +36,7 @@ public class User {
         return email;
     }
 
-    public IntegerProperty isAdminProperty() {
+    public BooleanProperty isAdminProperty() {
         return isAdmin;
     }
 
@@ -52,12 +50,12 @@ public class User {
         this.id.set(id);
     }
 
-    public int getIsAdmin() {
+    public boolean getIsAdmin() {
         return isAdmin.get();
     }
 
 
-    public void setIsAdmin(int isAdmin) {
+    public void setIsAdmin(boolean isAdmin) {
         this.isAdmin.set(isAdmin);
     }
 
